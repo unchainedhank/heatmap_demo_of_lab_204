@@ -1,20 +1,150 @@
-Class: App <br>
-Parameters:<br>
-Name 	Type 	Description<br>
-options 	Object 	<br>
+Class: App 
 
-参数列表<br>
-Properties<br>
-Name 	Type 	Description<br>
-url 	String 	<br>
+参数列表
 
-初始场景资源路径<br>
-background 	Number <br>	
+url 	String  	初始场景资源路径
+background 	Number  背景颜色或图片
+skyBox 	String  天空盒资源名称
+complete 	function 	初始化完成的函数回调
 
-背景颜色或图片<br>
-skyBox 	String 	<br>
+Example
+    // 仅初始化 3D 应用
+    var app=new THING.App();
+    // 初始化 3D 应用，并加载场景
+    var app = new THING.App({
+      url: 'https://www.thingjs.com/static/models/storehouse'// 场景地址
+    });
+    // 设置天空盒
+    var app = new THING.App({
+      url: 'https://www.thingjs.com/static/models/storehouse',// 场景地址
+      skyBox:'BlueSky'
+    });
+    // 设置背景图片
+    var app = new THING.App({
+      url: 'https://www.thingjs.com/static/models/storehouse',// 场景地址
+      background: 'http://www.thingjs.com/static/images/background_img_03.png'
+    });
 
-天空盒资源名称<br>
-complete 	function 	<br>
+function:create
+create(type, id, name, url, position, complete) → {THING.BaseObject}
 
-初始化完成的函数回调<br>
+创建物体
+Parameters:
+type 	String 	物体类型
+id 	Number | String 	物体 ID，可通过 THING.Utils.generateUUID() 生成唯一标识
+name 	String 	物体名称
+url 	String 	模型资源地址（Thing）/图片资源地址（Marker）/页面资源地址（WebView）
+position 	Array.<Number> 	物体在世界坐标系下的位置
+complete 	function 	物体加载完成后的回调函数
+
+Returns:
+Type
+THING.BaseObject 
+
+Example
+    // type:'Thing'
+    var truck = app.create({
+      type: 'Thing',
+      id: 'myCar01',
+      name: 'truck',
+      url: 'https://speech.uinnova.com/static/models/truck/',
+      position: [-5, 0, 0],
+      complete: function() {
+        console.log('truck created!');
+      }
+    });
+    // type:'UIAnchor';
+    var ui = app.create({
+      type: 'UIAnchor',
+      element: domElement, // 界面的dom元素
+      parent: parent, // 界面的父物体（位置跟随父物体更新）
+      localPosition: [0,0,0], // 相对父物体的偏移
+      pivot: [0,0.5], // 界面轴心
+    });
+    // type:'Marker';
+    var marker = app.create({
+      type: "Marker",
+      id: "myMarker01",
+      url: "https://speech.uinnova.com/static/images/warning1.png",
+      position: [0, 5, 0],
+      size: 4
+    });
+    // type:'WebView';
+    var webView = app.create({
+      type: 'WebView',
+      id: 'myWebView01',
+      url: 'https://www.thingjs.com',
+      position: [0, 0, 0],
+      width: 1920 * 0.01, // 3D 中实际宽度 单位 米
+      height: 1080 * 0.01, // 3D 中实际高度 单位 米
+      domWidth: 1920, // 页面宽度 单位 px
+      domHeight: 1080 // 页面高度 单位 px
+    });
+    // type:'Box';
+    var box = app.create({
+      type: 'Box',
+      width: 1.0, // 宽度
+      height: 1.0, // 高度
+      depth: 1.0, // 深度
+      widthSegments: 1.0, //宽度上的节数
+      heightSegments: 1.0, // 高度上的节数
+      depthSegments: 1.0, // 深度上的节数
+      center: 'Bottom', // 中心点
+      style: {
+        color: '#ffffff',
+        opacity: 0.8,
+        image: 'images/uv.jpg'
+      }
+    });
+    // type:'Sphere';
+    var sphere = app.create({
+      type: 'Sphere',
+      radius: 1,
+      widthSegments: 12,
+      heightSegments: 12,
+      position: [2, 0, 0],
+      style: {
+        image: 'images/uv.jpg'
+      }
+    });
+    // type:'Plane';
+    var plane = app.create({
+      type: 'Plane',
+      width: 2,
+      height: 1,
+      position: [0, 1, 0],
+      style: {
+        doubleSide: true,
+        image: 'images/uv.jpg'
+      }
+    });
+    // type:'Cylinder';
+    var plane = app.create({
+      type: 'Cylinder',
+      radius: 0.4,
+      height: 1.6,
+      position: [0, 0, 2]
+    });
+    // type:'Tetrahedron';
+    var t = app.create({
+      type: 'Tetrahedron',
+      radius: 1,
+      position: [2, 0, 2]
+    });
+    // 另外，可通过 THING.factory.registerClass(类型名称, 类) 来扩展物体类型
+    // 注册自定义类
+    THING.factory.registerClass('Car', Car);
+   
+function:setData
+
+设置热力图数据 数据格式为 [x坐标, y坐标, 热力值] 组成的数组，其中坐标值为世界坐标
+Parameters:
+data 	Array.<Array.<Number>> 	
+
+Example
+    // 设置热力图数据
+    heatMap.setData([
+      [0,0,10],
+      [0,1,12],
+      [0,2,11]
+    ])
