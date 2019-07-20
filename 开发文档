@@ -1,0 +1,20 @@
+Class: App <br>
+Parameters:<br>
+Name 	Type 	Description<br>
+options 	Object 	<br>
+
+参数列表<br>
+Properties<br>
+Name 	Type 	Description<br>
+url 	String 	<br>
+
+初始场景资源路径<br>
+background 	Number <br>	
+
+背景颜色或图片<br>
+skyBox 	String 	<br>
+
+天空盒资源名称<br>
+complete 	function 	<br>
+
+初始化完成的函数回调<br>
