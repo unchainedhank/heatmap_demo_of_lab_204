@@ -33,6 +33,6 @@
 2.4*Actors的设计*<br>
     Actors是一些包含状态和行为的对象，通过消息队列来传递消息。本项目采用Akka来构建可拓展的、弹性的前端应用平台。<br>
   将服务器中实时情况键值对按照文档中的格式广播并存贮到data_now.log文件中，在thingjs中引用该本地文件的ftp地址，调用SetInterval函数<br>
-  >徐畅. 《基于WiFi的人流量监控系统的设计与实现》[D] 北京：北京邮电大学网络技术研究院，2017
-实现结果：<http://www.thingjs.com/guide/?m=sample&i=http://www.thingjs.com/./client/ThingJS/50544/505441563507393211&sky=BlueSky>
+  >徐畅. 《基于WiFi的人流量监控系统的设计与实现》[D] 北京：北京邮电大学网络技术研究院，2017<br>
+实现结果：<http://www.thingjs.com/guide/?m=sample&i=http://www.thingjs.com/./client/ThingJS/50544/505441563507393211&sky=BlueSky><br>
 *若无法访问请联系作者开放公有浏览*
