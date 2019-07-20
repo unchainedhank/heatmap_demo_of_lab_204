@@ -9,8 +9,8 @@
 --
 2.1OpenWrt的编译和插件的修改<br>
     本项目采用3.10内核的openwart，宿主系统采用Ubuntu 13，固件编译包括三个不受<br>
-    1. 配置.config文件。通过make menuconfig命令生成.config文件，该文件会制定系统所需的待编译模块。其他上层应用程序无需编译进固件系统中。<br>
-    2. 编译系统。通过make v=99进行编译。<br>
+    "1." 配置.config文件。通过make menuconfig命令生成.config文件，该文件会制定系统所需的待编译模块。其他上层应用程序无需编译进固件系统中。<br>
+    "2." 编译系统。通过make v=99进行编译。<br>
     3. 生成固件。通过makefile文件制定规则进行固件生产，这一步将内核和文件系统通过cat连接起来。<br>
    编译完成后需要增加openwrt的插件：<br>
     1.SSH支持。SSH配合Sftp可以配合大数据交互。<br>
